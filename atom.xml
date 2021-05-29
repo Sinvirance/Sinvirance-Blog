@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sinvirance Blog</title>
+  
+  <subtitle>Lemon</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2021-05-27T14:18:40.553Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Sinvirance</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Log4j2 基本使用</title>
+    <link href="http://example.com/2021/05/27/Java/Log4j2-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>http://example.com/2021/05/27/Java/Log4j2-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</id>
+    <published>2021-05-27T09:58:56.000Z</published>
+    <updated>2021-05-27T14:18:40.553Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Log4j2-基本使用&quot;&gt;&lt;a href=&quot;#Log4j2-基本使用&quot; class=&quot;headerlink&quot; title=&quot;Log4j2 基本使用&quot;&gt;&lt;/a&gt;Log4j2 基本使用&lt;/h2&gt;&lt;h4 id=&quot;1-Log4j2-简介&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="日志处理" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HDFS 分布式文件系统</title>
+    <link href="http://example.com/2021/05/26/Hadoop/HDFS-%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://example.com/2021/05/26/Hadoop/HDFS-%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</id>
+    <published>2021-05-26T08:50:39.000Z</published>
+    <updated>2021-05-27T12:43:29.029Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;HDFS-分布式文件系统&quot;&gt;&lt;a href=&quot;#HDFS-分布式文件系统&quot; class=&quot;headerlink&quot; title=&quot;HDFS 分布式文件系统&quot;&gt;&lt;/a&gt;HDFS 分布式文件系统&lt;/h2&gt;&lt;h3 id=&quot;1-HDFS-简介&quot;&gt;&lt;a href=&quot;#1-HDFS-简介&quot; class=&quot;headerlink&quot; title=&quot;1. HDFS 简介&quot;&gt;&lt;/a&gt;1. HDFS 简介&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. It has many similarities with existing distributed file systems. However, the differences from other distributed file systems are significant. HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for applications that have large data sets. HDFS relaxes a few POSIX requirements to enable streaming access to file system data. HDFS was originally built as infrastructure for the Apache Nutch web search engine project. HDFS is part of the Apache Hadoop Core project.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Distributed： 分布式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;run on commodity hardware: 运行在通用硬件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;highly fault-tolerant: 高容错&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;highly throughput: 高吞吐&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hadoop" scheme="http://example.com/categories/Hadoop/"/>
+    
+    
+    <category term="分布式" scheme="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop 集群搭建</title>
+    <link href="http://example.com/2021/05/23/Hadoop/Hadoop-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    <id>http://example.com/2021/05/23/Hadoop/Hadoop-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
+    <published>2021-05-23T10:14:26.000Z</published>
+    <updated>2021-05-28T23:12:42.352Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Hadoop-集群搭建&quot;&gt;&lt;a href=&quot;#Hadoop-集群搭建&quot; class=&quot;headerlink&quot; title=&quot;Hadoop 集群搭建&quot;&gt;&lt;/a&gt;Hadoop 集群搭建&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Hadoop 搭建方式&lt;/p&gt;
+&lt;p&gt;单机模式：单节点模式，非集群&lt;/p&gt;
+&lt;p&gt;单机伪分布式：单节点，多线程模拟集群的效果&lt;/p&gt;
+&lt;p&gt;完全分布式模式：多台节点，真正的分布式 Hadoop 集群搭建，生产环境使用方式&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hadoop" scheme="http://example.com/categories/Hadoop/"/>
+    
+    
+    <category term="分布式" scheme="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="集群搭建" scheme="http://example.com/tags/%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop 简介</title>
+    <link href="http://example.com/2021/05/22/Hadoop/Hadoop-%E7%AE%80%E4%BB%8B/"/>
+    <id>http://example.com/2021/05/22/Hadoop/Hadoop-%E7%AE%80%E4%BB%8B/</id>
+    <published>2021-05-22T13:17:33.000Z</published>
+    <updated>2021-05-27T10:10:12.775Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Hadoop-介绍&quot;&gt;&lt;a href=&quot;#Hadoop-介绍&quot; class=&quot;headerlink&quot; title=&quot;Hadoop 介绍&quot;&gt;&lt;/a&gt;Hadoop 介绍&lt;/h2&gt;&lt;h3 id=&quot;1-Hadoop-是什么&quot;&gt;&lt;a href=&quot;#1-Hadoop-是什么&quot; class=&quot;headerlink&quot; title=&quot;1.Hadoop 是什么&quot;&gt;&lt;/a&gt;1.Hadoop 是什么&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;狭义上：一个适合大数据 &lt;strong&gt;分布式&lt;/strong&gt; &lt;strong&gt;存储&lt;/strong&gt; 和 &lt;strong&gt;计算&lt;/strong&gt; 框架平台&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;广义上：代表大数据的一个技术生态圈&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hadoop" scheme="http://example.com/categories/Hadoop/"/>
+    
+    
+    <category term="分布式" scheme="http://example.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Zookeeper 集群搭建</title>
+    <link href="http://example.com/2021/05/20/Zookeeper/Zookeeper-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    <id>http://example.com/2021/05/20/Zookeeper/Zookeeper-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
+    <published>2021-05-20T08:32:29.000Z</published>
+    <updated>2021-05-23T10:15:19.139Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Zookeeper-环境搭建&quot;&gt;&lt;a href=&quot;#Zookeeper-环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper 环境搭建&quot;&gt;&lt;/a&gt;Zookeeper 环境搭建&lt;/h2&gt;&lt;h4</summary>
+        
+      
+    
+    
+    
+    <category term="Zookeeper" scheme="http://example.com/categories/Zookeeper/"/>
+    
+    
+    <category term="集群搭建" scheme="http://example.com/tags/%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Zookeeper 介绍</title>
+    <link href="http://example.com/2021/05/20/Zookeeper/Zookeeper-%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://example.com/2021/05/20/Zookeeper/Zookeeper-%E4%BB%8B%E7%BB%8D/</id>
+    <published>2021-05-20T07:06:05.000Z</published>
+    <updated>2021-05-20T08:43:40.466Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Zookeeper-介绍&quot;&gt;&lt;a href=&quot;#Zookeeper-介绍&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper 介绍&quot;&gt;&lt;/a&gt;Zookeeper 介绍&lt;/h2&gt;&lt;h3 id=&quot;1-Zookeeper-是什么&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Zookeeper" scheme="http://example.com/categories/Zookeeper/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL TCL 事务控制</title>
+    <link href="http://example.com/2021/01/06/MySQL/MySQL-TCL-%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6/"/>
+    <id>http://example.com/2021/01/06/MySQL/MySQL-TCL-%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6/</id>
+    <published>2021-01-05T18:38:39.000Z</published>
+    <updated>2021-01-05T19:31:06.469Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;TCL：Transactions Control Language 事务控制语言&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;事务是&lt;strong&gt;正确执行&lt;/strong&gt;一系列操作，使得数据库从一种状态转化成另一种状态，且保证操作&lt;strong&gt;全部成功&lt;/strong&gt;，或者&lt;strong&gt;全部失败&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;1-事务原则&quot;&gt;&lt;a href=&quot;#1-事务原则&quot; class=&quot;headerlink&quot; title=&quot;1.事务原则&quot;&gt;&lt;/a&gt;1.事务原则&lt;/h3&gt;&lt;p&gt;事务必须服从 ISO/IEC 制定的 ACID 原则&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="事务" scheme="http://example.com/tags/%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL 数据类型与约束</title>
+    <link href="http://example.com/2021/01/05/MySQL/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BA%A6%E6%9D%9F/"/>
+    <id>http://example.com/2021/01/05/MySQL/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BA%A6%E6%9D%9F/</id>
+    <published>2021-01-05T12:48:00.000Z</published>
+    <updated>2021-01-05T18:37:38.147Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;一、MySQL-数据类型&quot;&gt;&lt;a href=&quot;#一、MySQL-数据类型&quot; class=&quot;headerlink&quot; title=&quot;一、MySQL 数据类型&quot;&gt;&lt;/a&gt;一、MySQL 数据类型&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;数值型&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&quot;http://img.sinvirance.ltd/blog/database/mysql/MySQL数值型.png&quot; alt=&quot;MySQL数值型&quot;  /&gt;</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="约束" scheme="http://example.com/tags/%E7%BA%A6%E6%9D%9F/"/>
+    
+    <category term="主键" scheme="http://example.com/tags/%E4%B8%BB%E9%94%AE/"/>
+    
+    <category term="数据类型" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL DDL</title>
+    <link href="http://example.com/2021/01/05/MySQL/MySQL-DDL/"/>
+    <id>http://example.com/2021/01/05/MySQL/MySQL-DDL/</id>
+    <published>2021-01-05T10:50:05.000Z</published>
+    <updated>2021-01-05T13:43:20.184Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;DDL：Data Define Language 数据定义语言&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;一、数据库的管理&quot;&gt;&lt;a href=&quot;#一、数据库的管理&quot; class=&quot;headerlink&quot; title=&quot;一、数据库的管理&quot;&gt;&lt;/a&gt;一、数据库的管理&lt;/h3&gt;&lt;h4 id=&quot;1-创建数据库&quot;&gt;&lt;a href=&quot;#1-创建数据库&quot; class=&quot;headerlink&quot; title=&quot;1.创建数据库&quot;&gt;&lt;/a&gt;1.创建数据库&lt;/h4&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;IF&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;EXISTS&lt;/span&gt; db_name &lt;span class=&quot;built_in&quot;&gt;CHARACTER&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;SET&lt;/span&gt; charset_name;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="SQL" scheme="http://example.com/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL DML</title>
+    <link href="http://example.com/2021/01/05/MySQL/MySQL-DML/"/>
+    <id>http://example.com/2021/01/05/MySQL/MySQL-DML/</id>
+    <published>2021-01-05T10:48:23.000Z</published>
+    <updated>2021-01-05T17:40:39.700Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;DML: Data Manipulation Language 数据操纵语言&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-数据插入&quot;&gt;&lt;a href=&quot;#1-数据插入&quot; class=&quot;headerlink&quot; title=&quot;1.数据插入&quot;&gt;&lt;/a&gt;1.数据插入&lt;/h4&gt;&lt;h5 id=&quot;方式一：指定字段&quot;&gt;&lt;a href=&quot;#方式一：指定字段&quot; class=&quot;headerlink&quot; title=&quot;方式一：指定字段&quot;&gt;&lt;/a&gt;方式一：指定字段&lt;/h5&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;INTO&lt;/span&gt; tb_name(col_name1,...)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;VALUES&lt;/span&gt;(value1,...)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="SQL" scheme="http://example.com/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL 常用函数</title>
+    <link href="http://example.com/2021/01/05/MySQL/MySQL-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/"/>
+    <id>http://example.com/2021/01/05/MySQL/MySQL-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</id>
+    <published>2021-01-04T19:12:50.000Z</published>
+    <updated>2021-01-04T19:26:09.962Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;1-字符函数&quot;&gt;&lt;a href=&quot;#1-字符函数&quot; class=&quot;headerlink&quot; title=&quot;1.字符函数&quot;&gt;&lt;/a&gt;1.字符函数&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;length()&lt;/code&gt;：查询参数值的字节数    &lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;-- 结果为:3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;LENGTH&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;emm&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;-- 在UTF8情况下为12：UTF8 一个汉字3个字节&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;LENGTH&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;咿呀呀emm&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="函数" scheme="http://example.com/tags/%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL DQL</title>
+    <link href="http://example.com/2021/01/05/MySQL/MySQL-DQL/"/>
+    <id>http://example.com/2021/01/05/MySQL/MySQL-DQL/</id>
+    <published>2021-01-04T19:10:22.000Z</published>
+    <updated>2021-01-05T14:25:35.401Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;DQL：Data Query Language 数据查询语言&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-基础查询&quot;&gt;&lt;a href=&quot;#1-基础查询&quot; class=&quot;headerlink&quot; title=&quot;1.基础查询&quot;&gt;&lt;/a&gt;1.基础查询&lt;/h4&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; 查询列表 &lt;span class=&quot;keyword&quot;&gt;FROM&lt;/span&gt; table_name;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;查询列表可以是表中的字段、函数、常量值、表达式&lt;/li&gt;
+&lt;li&gt;查询的结果是一个虚拟表格，不会被保存&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://example.com/categories/MySQL/"/>
+    
+    
+    <category term="SQL" scheme="http://example.com/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java HashMap</title>
+    <link href="http://example.com/2021/01/01/Java/Java-HashMap/"/>
+    <id>http://example.com/2021/01/01/Java/Java-HashMap/</id>
+    <published>2021-01-01T08:57:54.000Z</published>
+    <updated>2021-01-04T19:29:06.316Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;1-Hash-的基础名词&quot;&gt;&lt;a href=&quot;#1-Hash-的基础名词&quot; class=&quot;headerlink&quot; title=&quot;1.Hash 的基础名词&quot;&gt;&lt;/a&gt;1.Hash 的基础名词&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Hash也称散列、哈希：基本原理就是把任意长度的输入，通过Hash算法变成固定长度的输出&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hash 算法：这个映射的规则就是对应的Hash算法&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Hash" scheme="http://example.com/tags/Hash/"/>
+    
+    <category term="Map" scheme="http://example.com/tags/Map/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Stream</title>
+    <link href="http://example.com/2020/12/30/Java/Java8-Stream/"/>
+    <id>http://example.com/2020/12/30/Java/Java8-Stream/</id>
+    <published>2020-12-30T08:27:05.000Z</published>
+    <updated>2021-01-05T10:53:04.889Z</updated>
+    
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Stream" scheme="http://example.com/tags/Stream/"/>
+    
+    <category term="Lambad" scheme="http://example.com/tags/Lambad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 序列化(一)</title>
+    <link href="http://example.com/2020/12/26/Java/Java-%E5%BA%8F%E5%88%97%E5%8C%961/"/>
+    <id>http://example.com/2020/12/26/Java/Java-%E5%BA%8F%E5%88%97%E5%8C%961/</id>
+    <published>2020-12-26T15:51:03.000Z</published>
+    <updated>2021-01-05T14:48:43.919Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;1-序列化-Serialization-和-反序列化&quot;&gt;&lt;a href=&quot;#1-序列化-Serialization-和-反序列化&quot; class=&quot;headerlink&quot; title=&quot;1. 序列化 Serialization 和 反序列化&quot;&gt;&lt;/a&gt;1. 序列化 &lt;code&gt;Serialization&lt;/code&gt; 和 反序列化&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Serialization is the process of turning structured objects into a byte stream&lt;/p&gt;
+&lt;p&gt;序列化就是一个将 &lt;strong&gt;结构对象转换成字节流&lt;/strong&gt; 的过程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;注：转化为字节流的过程中：有可能去掉了对象的某些信息（某些字段），或者又添加了某些信息（比如&lt;code&gt;jvm&lt;/code&gt;版本信息）</summary>
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    
+    <category term="Serialize" scheme="http://example.com/tags/Serialize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP 连接</title>
+    <link href="http://example.com/2020/12/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E8%BF%9E%E6%8E%A5/"/>
+    <id>http://example.com/2020/12/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E8%BF%9E%E6%8E%A5/</id>
+    <published>2020-12-26T09:08:26.000Z</published>
+    <updated>2020-12-31T07:13:02.578Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;TCP是面向连接的一种可靠传输控制协议，TCP把连接作为最基本的抽象。每一条TCP连接唯一地被通信两端的两个端点所确定  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;TCP连接的端点又叫套接字（socket），根据TCP协议的规定，端口号拼接到IP地址即构成了套接字，即&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;套接字 socket = （IP地址：端口号）&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="TCP" scheme="http://example.com/tags/TCP/"/>
+    
+  </entry>
+  
+</feed>

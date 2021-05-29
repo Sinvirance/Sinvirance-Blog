@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Hadoop 介绍1.Hadoop 是什么 狭义上：一个适合大数据 分布式 存储 和 计算 框架平台  广义上：代表大数据的一个技术生态圈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop 简介">
+<meta property="og:url" content="http://example.com/2021/05/22/Hadoop/Hadoop-%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="Sinvirance Blog">
+<meta property="og:description" content="Hadoop 介绍1.Hadoop 是什么 狭义上：一个适合大数据 分布式 存储 和 计算 框架平台  广义上：代表大数据的一个技术生态圈">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img.sinvirance.ltd/blog/Hadoop/Yarn 资源协调过程.png">
+<meta property="article:published_time" content="2021-05-22T13:17:33.000Z">
+<meta property="article:modified_time" content="2021-05-27T10:10:12.775Z">
+<meta property="article:author" content="Sinvirance">
+<meta property="article:tag" content="分布式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.sinvirance.ltd/blog/Hadoop/Yarn 资源协调过程.png">
+
+<link rel="canonical" href="http://example.com/2021/05/22/Hadoop/Hadoop-%E7%AE%80%E4%BB%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hadoop 简介 | Sinvirance Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Sinvirance Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sinvirance Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lemon</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/sinvirance" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/22/Hadoop/Hadoop-%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.png">
+      <meta itemprop="name" content="Sinvirance">
+      <meta itemprop="description" content="有时间绝望的话，还不如吃点好吃的去睡觉呢!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sinvirance Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hadoop 简介
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-22 21:17:33" itemprop="dateCreated datePublished" datetime="2021-05-22T21:17:33+08:00">2021-05-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-27 18:10:12" itemprop="dateModified" datetime="2021-05-27T18:10:12+08:00">2021-05-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index"><span itemprop="name">Hadoop</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Hadoop-介绍"><a href="#Hadoop-介绍" class="headerlink" title="Hadoop 介绍"></a>Hadoop 介绍</h2><h3 id="1-Hadoop-是什么"><a href="#1-Hadoop-是什么" class="headerlink" title="1.Hadoop 是什么"></a>1.Hadoop 是什么</h3><ul>
+<li><p>狭义上：一个适合大数据 <strong>分布式</strong> <strong>存储</strong> 和 <strong>计算</strong> 框架平台</p>
+</li>
+<li><p>广义上：代表大数据的一个技术生态圈</p>
+<a id="more"></a>
+
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Hadoop生态圈技术栈</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hadoop (HDFS + MapReduce + Yarn)</td>
+</tr>
+<tr>
+<td>Hive 数据仓库工具</td>
+</tr>
+<tr>
+<td>HBase 海量列示非关系型数据库</td>
+</tr>
+<tr>
+<td>Flume 数据采集工具</td>
+</tr>
+<tr>
+<td>Sqoop ETL工具</td>
+</tr>
+<tr>
+<td>Kafka 高吞吐消息中间件</td>
+</tr>
+<tr>
+<td>…</td>
+</tr>
+</tbody></table>
+<h3 id="2-Hadoop-的优缺点"><a href="#2-Hadoop-的优缺点" class="headerlink" title="2. Hadoop 的优缺点"></a>2. Hadoop 的优缺点</h3><p><strong>Hadoop的优点</strong></p>
+<ul>
+<li>高扩展性：Hadoop 集群很方便扩展到数以千个节点</li>
+<li>高效性：Hadoop 可以在节点之间进行动态的移动数据，并保证各个节点的动态平衡，处理速度非常快 </li>
+<li>高容错：Hadoop 能自动维护数据的多份复制，并且能够自动将失败的任务重新分配</li>
+<li>低成本：Hadoop 可以接受低配置的机器组成服务器集群</li>
+</ul>
+<p><strong>Hadoop的缺点</strong></p>
+<ul>
+<li>Hadoop 不适用于低延迟数据访问</li>
+<li>Hadoop 不能高效存储大量小文件</li>
+<li>Hadoop 不支持多用户写入并修改任意文件</li>
+</ul>
+<h3 id="3-Hadoop-的发行版本"><a href="#3-Hadoop-的发行版本" class="headerlink" title="3. Hadoop 的发行版本"></a>3. Hadoop 的发行版本</h3><ul>
+<li><p>Apache Hadoop</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://hadoop.apache.org/">http://hadoop.apache.org</a></p>
+<p>优点：开源、免费、代码更新版本比较快</p>
+<p>缺点：版本的升级，维护，以及不同版本的兼容性有很大问题，学习方便</p>
+</li>
+<li><p>ClouderaManager Hadoop：CDH - 生成环境使用</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://www.cloudera.com/">http://www.cloudera.com/</a></p>
+<p>特点：各个版本之间稳定运行，版本升级方便，收费</p>
+</li>
+<li><p>HortonWorks Hadoop：HDP</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://hortonworks.com/">http://hortonworks.com/</a></p>
+<p>特点：开源、免费、提供web界面管理来管理Hadoop集群<a target="_blank" rel="noopener" href="http://ambari.apache.org/">http://ambari.apache.org</a></p>
+</li>
+</ul>
+<h2 id="Hadoop-组成"><a href="#Hadoop-组成" class="headerlink" title="Hadoop 组成"></a>Hadoop 组成</h2><p>Hadoop = HDFS（分布式文件系统）+ MapReduce（分布式计算框架）+ Yarn（资源协调框架）+ Common模</p>
+<h3 id="1-分布式文件系统-HDFS"><a href="#1-分布式文件系统-HDFS" class="headerlink" title="1. 分布式文件系统 HDFS"></a>1. 分布式文件系统 HDFS</h3><p>​    作用：<strong>数据分割、制作副本、分散存储</strong></p>
+<h4 id="1-1-HDFS-的特点"><a href="#1-1-HDFS-的特点" class="headerlink" title="1.1 HDFS 的特点"></a>1.1 HDFS 的特点</h4><ul>
+<li><strong>高吞吐</strong>：HDFS 一般文件大小是从 GB -&gt; TB,在单个实例中支持成千上万个文件</li>
+<li><strong>高容错</strong>：快速检测故障，并从故障中快速自动恢复</li>
+<li><strong>流式数据访问</strong>：多次读取，一次写入</li>
+<li><strong>Master/ Slave</strong>：架构</li>
+</ul>
+<h4 id="1-2-HDFS-结构"><a href="#1-2-HDFS-结构" class="headerlink" title="1.2 HDFS 结构"></a>1.2 HDFS 结构</h4><p>![HDFS 结构](<a target="_blank" rel="noopener" href="http://img.sinvirance.ltd/blog/Hadoop/HDFS">http://img.sinvirance.ltd/blog/Hadoop/HDFS</a> 结构.png)</p>
+<p><strong>HDFS 角色：</strong></p>
+<ul>
+<li><strong>NameNode（nn）</strong>：是 HDFS 的 Master 节点，用于管理和维护元数据，元数据记录了文件的块列表以及块所在的 DateNode 节点信息</li>
+<li><strong>DataNode（dn）</strong>：是 HDFS 的 Slave 节点，在本地文件系统中存储文件块数据，以及进行块数据的校验</li>
+<li><strong>SecondaryNameNode（2nn）</strong>：用于监控 HDFS 的后台节点，间隔一段时间获取 HDFS 元数据快照</li>
+</ul>
+<p><strong>注意</strong>：nn、dn、2nn 即是角色名称，也是进程名称，也代指电脑节点</p>
+<h3 id="2-分布式计算-MapReduce"><a href="#2-分布式计算-MapReduce" class="headerlink" title="2. 分布式计算 MapReduce"></a>2. 分布式计算 MapReduce</h3><p>作用：<strong>拆解任务、分散计算、汇总结果</strong></p>
+<h4 id="2-1-MapReduce-计算过程"><a href="#2-1-MapReduce-计算过程" class="headerlink" title="2.1 MapReduce 计算过程"></a>2.1 MapReduce 计算过程</h4><p>![MapReduce 计算过程](<a target="_blank" rel="noopener" href="http://img.sinvirance.ltd/blog/Hadoop/MapReduce">http://img.sinvirance.ltd/blog/Hadoop/MapReduce</a> 计算过程.png)</p>
+<p><strong>MapReduce 计算 = Map 阶段 + Reduce 阶段</strong></p>
+<ul>
+<li><strong>Map 阶段</strong>：将计算任务拆分成多个节点，每个节点负责一份数据的计算，得到部分结果</li>
+<li><strong>Reduce 阶段</strong>：将 Map 阶段输出的结果进行汇总得到全局结果</li>
+</ul>
+<h3 id="3-资源协调框架-Yarn"><a href="#3-资源协调框架-Yarn" class="headerlink" title="3. 资源协调框架 Yarn"></a>3. 资源协调框架 Yarn</h3><p>作用：<strong>作业调度、资源管理</strong></p>
+<h4 id="3-1-资源协调过程"><a href="#3-1-资源协调过程" class="headerlink" title="3.1 资源协调过程"></a>3.1 资源协调过程</h4><img src="http://img.sinvirance.ltd/blog/Hadoop/Yarn 资源协调过程.png" alt="Yarn 资源协调过程" style="zoom:80%;" />
+
+<ol>
+<li>Client 向 Yarn 提交作业，首先通过 ResourceMaster 请求分配资源</li>
+<li>ResourceMaster 寻找到一个空闲的 NodeManager,在内部启动 Container，运行 ApplicationMaster</li>
+<li>ApplicaitonMaster 计算出作业需求的资源数目，并向 ResourceMaster 申请资源</li>
+<li>ResourceMaster 将资源转发给 ApplicationMaster</li>
+<li>ApplicationMaster 将资源转发给各个 NodeManager，NodeManager 负责在节点中启动 Container 来执行作业</li>
+<li>各个 NodeManager 执行完任务后反馈给 ApplicaitionMaster，ApplicationMaster将结果反馈给 ResourceMaster</li>
+</ol>
+<h4 id="3-2-Yarn-角色"><a href="#3-2-Yarn-角色" class="headerlink" title="3.2 Yarn 角色"></a>3.2 Yarn 角色</h4><ul>
+<li><p>ResourceManager（RM）：是 Yarn 的 Master 角色，用于处理客户端请求，接收来自 ApplicationMaster 的资源申请请求，并为之分配资源，</p>
+<p>管理NodeManager ，接收来自NodeManager 的资源汇报信息</p>
+</li>
+<li><p>ApplicationMaster（AM）：运行在Container中，负责向ResourceManager申请资源并和NodeManager协同工作来运行应用的各个任务</p>
+</li>
+<li><p>NodeManager（NM）：是 Yarn 的 Slave 角色，NodeManager进程运行在集群中的 DataNode 节点上，每个节点都会有自己的 NodeManager，</p>
+<p>负责接收处理来自ResourceManager的资源分配请求，分配具体的Container给应用，多个节点</p>
+</li>
+<li><p>Container：任何一个作业或者应用都必须运行在一个或者多个 Container 中，一个节点会运行多个Container，但一个Container不会跨节点</p>
+</li>
+</ul>
+<h3 id="4-Hadoop-Common"><a href="#4-Hadoop-Common" class="headerlink" title="4. Hadoop Common"></a>4. Hadoop Common</h3><p>支持其他模块的公共模块</p>
+<ul>
+<li>Configuration：模块配置</li>
+<li>RPC：各个节点之间的通信通过远程过程调用</li>
+<li>序列化机制</li>
+<li>日志操作</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># 分布式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/20/Zookeeper/Zookeeper-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" rel="prev" title="Zookeeper 集群搭建">
+      <i class="fa fa-chevron-left"></i> Zookeeper 集群搭建
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/23/Hadoop/Hadoop-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" rel="next" title="Hadoop 集群搭建">
+      Hadoop 集群搭建 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop-%E4%BB%8B%E7%BB%8D"><span class="nav-text">Hadoop 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Hadoop-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">1.Hadoop 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Hadoop-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">2. Hadoop 的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Hadoop-%E7%9A%84%E5%8F%91%E8%A1%8C%E7%89%88%E6%9C%AC"><span class="nav-text">3. Hadoop 的发行版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop-%E7%BB%84%E6%88%90"><span class="nav-text">Hadoop 组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-HDFS"><span class="nav-text">1. 分布式文件系统 HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-HDFS-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">1.1 HDFS 的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-HDFS-%E7%BB%93%E6%9E%84"><span class="nav-text">1.2 HDFS 结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97-MapReduce"><span class="nav-text">2. 分布式计算 MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-MapReduce-%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-text">2.1 MapReduce 计算过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%B5%84%E6%BA%90%E5%8D%8F%E8%B0%83%E6%A1%86%E6%9E%B6-Yarn"><span class="nav-text">3. 资源协调框架 Yarn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E8%B5%84%E6%BA%90%E5%8D%8F%E8%B0%83%E8%BF%87%E7%A8%8B"><span class="nav-text">3.1 资源协调过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-Yarn-%E8%A7%92%E8%89%B2"><span class="nav-text">3.2 Yarn 角色</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Hadoop-Common"><span class="nav-text">4. Hadoop Common</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sinvirance"
+      src="/images/header.png">
+  <p class="site-author-name" itemprop="name">Sinvirance</p>
+  <div class="site-description" itemprop="description">有时间绝望的话，还不如吃点好吃的去睡觉呢!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sinvirance" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sinvirance" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sinvirance</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
