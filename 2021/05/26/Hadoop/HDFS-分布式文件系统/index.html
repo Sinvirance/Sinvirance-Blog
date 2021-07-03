@@ -28,13 +28,14 @@
 <meta property="og:description" content="HDFS 分布式文件系统1. HDFS 简介 The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. It has many similarities with existing distributed file systems. Ho">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img.sinvirance.ltd/blog/Hadoop/NameNode 元数据信息.png">
+<meta property="og:image" content="http://img.sinvirance.ltd/blog/Hadoop/HDFS 详细架构图.png">
 <meta property="og:image" content="http://img.sinvirance.ltd/blog/Hadoop/Windows10Hadoop%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F.png">
 <meta property="og:image" content="http://img.sinvirance.ltd//blog/Hadoop/HDFS客户端读数据流程.png">
 <meta property="og:image" content="http://img.sinvirance.ltd//blog/Hadoop/HDFS客户端写数据流程.png">
 <meta property="og:image" content="http://img.sinvirance.ltd//blog/Hadoop/%E5%85%83%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86.png">
 <meta property="og:image" content="http://img.sinvirance.ltd//blog/Hadoop/%E5%85%83%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6.png">
 <meta property="article:published_time" content="2021-05-26T08:50:39.000Z">
-<meta property="article:modified_time" content="2021-07-03T05:55:49.165Z">
+<meta property="article:modified_time" content="2021-07-03T07:10:56.084Z">
 <meta property="article:author" content="Sinvirance">
 <meta property="article:tag" content="分布式">
 <meta name="twitter:card" content="summary">
@@ -212,7 +213,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-03 13:55:49" itemprop="dateModified" datetime="2021-07-03T13:55:49+08:00">2021-07-03</time>
+                <time title="修改时间：2021-07-03 15:10:56" itemprop="dateModified" datetime="2021-07-03T15:10:56+08:00">2021-07-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,7 +281,8 @@
 <p>因此 HDFS 适合用来做大数据的底层存储服务，不适合用来做网盘等应用</p>
 </li>
 </ul>
-<h3 id="3-HDFS-架构"><a href="#3-HDFS-架构" class="headerlink" title="3. HDFS 架构"></a>3. HDFS 架构</h3><p>![HDFS 详细架构图](<a target="_blank" rel="noopener" href="http://img.sinvirance.ltd/blog/Hadoop/HDFS">http://img.sinvirance.ltd/blog/Hadoop/HDFS</a> 详细架构图.png)</p>
+<h3 id="3-HDFS-架构"><a href="#3-HDFS-架构" class="headerlink" title="3. HDFS 架构"></a>3. HDFS 架构</h3><img src="http://img.sinvirance.ltd/blog/Hadoop/HDFS 详细架构图.png" alt="HDFS 详细架构图"  />
+
 <ul>
 <li>NameNode(nn)：HDFS 集群的 Master 管理者<ul>
 <li>维护 HDFS 的名称空间（NameSpace）</li>
@@ -400,7 +402,7 @@
 
 </li>
 </ul>
-<h3 id="5-HDFS-读写解析"><a href="#5-HDFS-读写解析" class="headerlink" title="5. HDFS 读写解析"></a>5. HDFS 读写解析</h3><h4 id="5-1-HDFS-客户端读数据流程"><a href="#5-1-HDFS-客户端读数据流程" class="headerlink" title="5.1 HDFS 客户端读数据流程"></a>5.1 HDFS 客户端读数据流程</h4><img src="http://img.sinvirance.ltd//blog/Hadoop/HDFS客户端读数据流程.png"  />
+<h3 id="5-HDFS-读写解析"><a href="#5-HDFS-读写解析" class="headerlink" title="5. HDFS 读写解析"></a>5. HDFS 读写解析</h3><h4 id="5-1-HDFS-客户端读数据流程"><a href="#5-1-HDFS-客户端读数据流程" class="headerlink" title="5.1 HDFS 客户端读数据流程"></a>5.1 HDFS 客户端读数据流程</h4><img src="http://img.sinvirance.ltd//blog/Hadoop/HDFS客户端读数据流程.png" style="zoom:;" />
 
 <ol>
 <li>客户端通过Distributed FileSystem 向 NameNode 请求下载文件，NameNode 通过查询元数据，找到文件块所在的 DataNode 地址，<strong>分批返回</strong> HDFS 客户端</li>
@@ -408,7 +410,7 @@
 <li>DataNode 开始传输数据给客户端(从磁盘里面读取数据流，以 <strong>Packet(默认64KB)</strong> 为单位来做校验)</li>
 <li>客户端以 Packet 为单位接收，先在本地缓存，然后写入目标文件</li>
 </ol>
-<h4 id="5-2-HDFS客户端写数据流程"><a href="#5-2-HDFS客户端写数据流程" class="headerlink" title="5.2 HDFS客户端写数据流程"></a>5.2 HDFS客户端写数据流程</h4><img src="http://img.sinvirance.ltd//blog/Hadoop/HDFS客户端写数据流程.png" alt="HDFS客户端写数据流程"  />
+<h4 id="5-2-HDFS客户端写数据流程"><a href="#5-2-HDFS客户端写数据流程" class="headerlink" title="5.2 HDFS客户端写数据流程"></a>5.2 HDFS客户端写数据流程</h4><img src="http://img.sinvirance.ltd//blog/Hadoop/HDFS客户端写数据流程.png" alt="HDFS客户端写数据流程" style="zoom:;" />
 
 <ol>
 <li><code>HDFS Client</code> 创建 <code>Distributed FileSystem</code> 对象， <code>Distributed FileSystem</code> 通过RPC远程调用 NameNode 请求上传文件。</li>
